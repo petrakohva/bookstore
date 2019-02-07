@@ -22,8 +22,9 @@ public class BookstoremavenprojectApplication {
 	public CommandLineRunner bookDemo(BookRepository repository) {
 		return (args) -> {
 			log.info("save books");
-			repository.save(new Book("Harry Potter and the Philosophers Stone", "J. K. Rowling", 1997, "a13j533", 19.99));
-			repository.save(new Book("Harry Potter and the Chamber of Secrets", "J. K. Rowling", 1999, "bh7362k", 19.99));
+			repository.save(new Book("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 1997, "1234-5678", 19.99));
+			repository.save(new Book("Harry Potter and the Chamber of Secrets", "J. K. Rowling", 1999, "9876-5432", 19.99));
+			repository.save(new Book("Harry Potter and the Prisoner of Azkaban", "J. K. Rowling", 2001, "1928-3746", 19.99));
 			
 			log.info("find books");
 			for (Book book : repository.findAll()) {
