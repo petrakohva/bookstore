@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.swd20.bookstoremavenproject.domain.Book;
 import hh.swd20.bookstoremavenproject.domain.BookRepository;
+import hh.swd20.bookstoremavenproject.domain.GenreRepository;
 
 @Controller
 public class BookController {
 	@Autowired
 	private BookRepository repository;
+	
+	@Autowired
+	private GenreRepository grepository;
 	
 	@RequestMapping(value="/booklist", method=RequestMethod.GET)
 	public String bookList(Model model) {
@@ -24,6 +28,7 @@ public class BookController {
 	@RequestMapping(value="/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("genre", grepository.findAll());
 		return "addbook";
 	}
 	
@@ -42,6 +47,7 @@ public class BookController {
 	@RequestMapping(value="/edit/{id}")
 	public String addBook(@PathVariable("id") Long bookId, Model model) {
 		model.addAttribute("book", repository.findById(bookId));
+		model.addAttribute("genre", grepository.findAll());
 		return "editbook";
 	}
 }

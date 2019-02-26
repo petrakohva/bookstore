@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.swd20.bookstoremavenproject.domain.Book;
 import hh.swd20.bookstoremavenproject.domain.BookRepository;
+import hh.swd20.bookstoremavenproject.domain.Genre;
+import hh.swd20.bookstoremavenproject.domain.GenreRepository;
 
 @SpringBootApplication
 public class BookstoremavenprojectApplication {
@@ -19,15 +21,21 @@ public class BookstoremavenprojectApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository brepository, GenreRepository grepository) {
 		return (args) -> {
 			log.info("save books");
-			repository.save(new Book("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 1997, "1234-5678", 19.99));
-			repository.save(new Book("Harry Potter and the Chamber of Secrets", "J. K. Rowling", 1999, "9876-5432", 19.99));
-			repository.save(new Book("Harry Potter and the Prisoner of Azkaban", "J. K. Rowling", 2001, "1928-3746", 19.99));
+			grepository.save(new Genre("Fantasy"));
+			grepository.save(new Genre("Horror"));
+			grepository.save(new Genre("Thriller"));
+			
+			
+			
+			brepository.save(new Book("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 1997, "1234-5678", 19.99, grepository.findByGenreName("Fantasy").get(0)));
+			brepository.save(new Book("Harry Potter and the Chamber of Secrets", "J. K. Rowling", 1999, "9876-5432", 19.99, grepository.findByGenreName("Fantasy").get(0)));
+			brepository.save(new Book("Harry Potter and the Prisoner of Azkaban", "J. K. Rowling", 2001, "1928-3746", 19.99, grepository.findByGenreName("Fantasy").get(0)));
 			
 			log.info("find books");
-			for (Book book : repository.findAll()) {
+			for (Book book : brepository.findAll()) {
 				log.info(book.toString());
 			}
 		};

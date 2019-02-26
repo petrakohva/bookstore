@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" ></script>
 <title>Booklist</title>
 </head>
 <body>
@@ -23,6 +25,11 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="isbn">ISBN</label>
 			<input type="text" th:field="*{isbn}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="genre">Genre</label>
+			<select id="genrelist" th:field="*{genre}" class="form-control">
+       			<option th:each="genre: ${genre}" th:value="${genre.genreid}" th:text="${genre.genreName}"></option>
+    		</select>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input type="submit" class="btn btn-success" value="Save"></input>
 		</form>
