@@ -1,0 +1,8 @@
+package hh.swd20.bookstoremavenproject.domain;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+	User findByUsername(String username);
+
+}
