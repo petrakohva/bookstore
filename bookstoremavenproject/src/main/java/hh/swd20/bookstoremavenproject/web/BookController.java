@@ -24,7 +24,7 @@ public class BookController {
 	@Autowired
 	private GenreRepository grepository;
 	
-	@RequestMapping(value="/")
+	@RequestMapping(value="/login")
 	public String login() {
 		return "login";
 	}
