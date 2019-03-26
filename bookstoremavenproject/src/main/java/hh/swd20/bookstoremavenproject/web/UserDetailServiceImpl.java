@@ -1,5 +1,7 @@
 package hh.swd20.bookstoremavenproject.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,9 +25,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 	{
-		User curruser = repository.findByUsername(username);
-		UserDetails user = new org.springframework.security.core.userdetails.User(username, curruser.getPasswordHash(),
-				AuthorityUtils.createAuthorityList(curruser.getRole()));
+		List<User> curruser = repository.findByUsername(username);
+		UserDetails user = new org.springframework.security.core.userdetails.User(username, ((User) curruser).getPasswordHash(),
+				AuthorityUtils.createAuthorityList(((User) curruser).getRole()));
 		return user;
 	}
 
