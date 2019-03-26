@@ -16,7 +16,7 @@ import hh.swd20.bookstoremavenproject.domain.Book;
 import hh.swd20.bookstoremavenproject.domain.BookRepository;
 import hh.swd20.bookstoremavenproject.domain.GenreRepository;
 
-@RestController
+@Controller
 public class BookController {
 	@Autowired
 	private BookRepository brepository;
