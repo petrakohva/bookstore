@@ -24,9 +24,8 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void findByUsernameShouldReturnUser() {
-		List<User> users = urepository.findByUsername("admin");
+		User users = urepository.findByUsername("admin");
 		
-		assertThat(users).hasSize(1);
 		
 		
 	}
